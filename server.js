@@ -11,8 +11,9 @@ const database = require("./db/db.json");
 const app = express();
 const PORT = 3001;
 
-// set up express app to handle data parsing
+// express middleware
 app.use(express.urlencoded({ extended: true }));
+//body parsing
 app.use(express.json());
 
 // set up routes
