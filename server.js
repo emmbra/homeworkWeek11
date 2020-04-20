@@ -9,7 +9,7 @@ const database = require("./db/db.json");
 
 // set up express app
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // express middleware
 app.use(express.urlencoded({ extended: true }));
@@ -18,6 +18,10 @@ app.use(express.json());
 // route for index.js
 app.use(express.static("public"));
 
+// route for index.html
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
+});
 
 // route for notes.html
 app.get("/notes", function(req, res) {
@@ -39,7 +43,7 @@ app.post("/api/notes", function (req, res) {
   // set random id for newNote using uuid
   newNote.id = randomID;
 
-  // push new task with random id to database
+  // push newNote with random id to database
   database.push(newNote);
   // console.log(database);
   fs.writeFileSync(databasePath, JSON.stringify(database), function(err, data) {
@@ -51,16 +55,20 @@ app.post("/api/notes", function (req, res) {
 //app.delete to delete notes
 //use wildcard for id
 app.delete("/api/notes/:id", function(req, res) {
-    // loop through database to find id so note can be deleted
+    // loop through database to find id so specific note can be deleted
     console.log("Deleted!");
     const databaseID = req.params.id;
     for (let i = 0; i < database.length; i++) {
         if(database[i].id === databaseID) {
             database.splice(i, 1);
-            break;
         }
     }
     res.json(database);
+});
+
+// catch all * wildcard route must always be last declared route
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 app.listen(PORT, function () {
