@@ -15,14 +15,10 @@ const PORT = 3001;
 app.use(express.urlencoded({ extended: true }));
 //body parsing
 app.use(express.json());
+app.use(express.static("public"));
 
-// set up routes
-// index.html
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
-  });
 
-// notes.html
+// // notes.html
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
   });
@@ -35,6 +31,7 @@ app.get("/api/notes", function(req, res) {
 //app.post to add randomID to new note and save to db
 app.post("/api/notes", function (req, res) {
   // add a random id to each note and save it to database
+  console.log("I am hit!");
   const randomID = uuid();
   const newNote = req.body;
   newNote.id = randomID;
