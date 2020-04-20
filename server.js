@@ -32,13 +32,16 @@ app.get("/api/notes", function(req, res) {
 //app.post to add randomID to new note and save to db
 app.post("/api/notes", function (req, res) {
   // add a random id to each note and save it to database
-  console.log("I am hit!");
+  console.log("New note added!");
   const randomID = uuid();
   const newNote = req.body;
+  console.log(newNote);
+  // set random id for newNote using uuid
   newNote.id = randomID;
 
   // push new task with random id to database
   database.push(newNote);
+  // console.log(database);
   fs.writeFileSync(databasePath, JSON.stringify(database), function(err, data) {
       if (err) throw err;
   })
@@ -49,6 +52,7 @@ app.post("/api/notes", function (req, res) {
 //use wildcard for id
 app.delete("/api/notes/:id", function(req, res) {
     // loop through database to find id so note can be deleted
+    console.log("Deleted!");
     const databaseID = req.params.id;
     for (let i = 0; i < database.length; i++) {
         if(database[i].id === databaseID) {
