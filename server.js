@@ -32,7 +32,7 @@ app.get("/api/notes", function(req, res) {
     res.json(database);
   });
 
-//app.post
+//app.post to add randomID to new note and save to db
 app.post("/api/notes", function (req, res) {
   // add a random id to each note and save it to database
   const randomID = uuid();
@@ -47,8 +47,19 @@ app.post("/api/notes", function (req, res) {
   res.json(newNote);
 });
 
-//app.delete
-  // loop through database to find id so note can be deleted
+//app.delete to delete notes
+//use wildcard for id
+app.delete("/api/notes/:id", function(req, res) {
+    // loop through database to find id so note can be deleted
+    const databaseID = req.params.id;
+    for (let i = 0; i < database.length; i++) {
+        if(database[i].id === databaseID) {
+            database.splice(i, 1);
+            break;
+        }
+    }
+    res.json(database);
+});
 
 app.listen(PORT, function () {
     console.log("Listening on PORT " + PORT);
