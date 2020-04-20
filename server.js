@@ -13,12 +13,13 @@ const PORT = 3001;
 
 // express middleware
 app.use(express.urlencoded({ extended: true }));
-//body parsing
+// body parsing
 app.use(express.json());
+// route for index.js
 app.use(express.static("public"));
 
 
-// // notes.html
+// route for notes.html
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
   });
