@@ -30,7 +30,11 @@ app.get("/api/notes", function(req, res) {
   });
 
 //app.post
+  // add a random id to each note and save it to database
+
 //app.delete
+  // loop through database to find id so note can be deleted
+
 app.listen(PORT, function () {
     console.log("Listening on PORT " + PORT);
   });
