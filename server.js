@@ -9,6 +9,8 @@ const database = require("./db/db.json");
 
 // set up express app
 const app = express();
+// PORT determined by whether it's live or local
+// need this to upload to Heroku
 const PORT = process.env.PORT || 3001;
 
 // express middleware
