@@ -7,7 +7,7 @@ npm i (to install all dependencies)
 
 node .\app.js (to launch the application locally)
 
-[Express Note Taker](https://dashboard.heroku.com/apps) (to see the app on heroku)
+[Express Note Taker](https://eb-notetaker.herokuapp.com/) (to see the app on heroku)
 
 ## Technologies
 
