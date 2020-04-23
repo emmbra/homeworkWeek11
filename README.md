@@ -27,7 +27,7 @@ Difficulties included:
 
 ## Screenshots
 
-![GIF of Template Engine: Employee Summary](https://github.com/emmbra/homeworkWeek10/blob/master/assets/img/EmployeeSummaryDemo.gif)
+![GIF of Express Note Taker](https://github.com/emmbra/homeworkWeek11/blob/master/assets/images/homework11demo.gif)
 
 ## Credits
 
